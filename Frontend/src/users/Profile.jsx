@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { Spinner } from "reactstrap";
-import { PersonBadgeFill, At } from "react-bootstrap-icons";
+import { PersonBadgeFill } from "react-bootstrap-icons";
 
 const Profile = () => {
     const { username } = useParams();
@@ -12,23 +12,20 @@ const Profile = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        const getUser = async () => {
+        const getUserInfo = async () => {
             try {
                 const res = await axios.get(`/api/users/${username}`);
                 setUser(res.data);
-                const orderRes = await axios.get(`/api/users/${username}/orders`);
-                console.log(orderRes.data);
-                setOrders(orderRes.data);
+                const orderItems = await axios.get(`/api/users/${username}/orders`);
+                setOrders(orderItems.data);
                 setIsLoaded(!isLoaded);
             } catch (err) {
                 console.log(err);
                 navigate("/users/login");
             }
         };
-        getUser();
+        getUserInfo();
     }, []);
-
-
 
     return (
         <div>
@@ -102,8 +99,9 @@ const Profile = () => {
                         </section>
                         <hr />
                         <div className="row d-flex justify-content-between">
-                            <Link to={`/${username}/edit`} className="btn btn-primary m-2 col-5">Edit Profile</Link>
-                            <Link to={`/${username}/password`} className="btn btn-info m-2 text-light col-5">Change Password</Link>
+                            <Link to={`/${username}/edit`} className="btn btn-primary m-2 col-3">Edit Profile</Link>
+                            <Link to={`/${username}/password`} className="btn btn-info m-2 text-light col-3">Change Password</Link>
+                            <Link to={`/${username}/delete`} className="btn btn-danger m-2 text-light col-3">Delete Profile</Link>
                         </div>
                         <hr />
                         <div>
@@ -114,6 +112,9 @@ const Profile = () => {
                                 < div className="row" >
                                     <div className="col-sm-12 mb-4">
                                         <div className="card">
+                                            <div className="card-title text-center mt-1">
+                                                <h5>Order Date: {order.date}</h5>
+                                            </div>
                                             <div className="card-body">
                                                 <div className="row g-6">
                                                     {order.pokemon ? (

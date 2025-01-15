@@ -98,16 +98,19 @@ router.get('/:username/orders', ensureLoggedIn, async (req, res, next) => {
         const orders = await Order.findAll({ where: { user_username: username } })
         const orderIds = [];
         for (let order of orders) {
-            orderIds.push(order.id);
+            orderIds.unshift(order.id);
         };
         const combinedOrders = [];
         for (let id of orderIds) {
             const pokemon = await OrderedPokemonCard.findAll({ where: { order_id: id } });
             const mtg = await OrderedMTGCard.findAll({ where: { order_id: id } });
             const yugioh = await OrderedYugiohCard.findAll({ where: { order_id: id } });
+            const order = await Order.findByPk(id);
+            let orderDate = String(order.createdAt);
+            let timestamp = orderDate.slice(0, 15);
             const orderObj = {};
+            orderObj.date = timestamp;
             if (pokemon.length) {
-                console.log(pokemon);
                 for (let order of pokemon) {
                     const card = await PokemonCard.findByPk(order.card_id);
                     order.dataValues.name = card.name;
@@ -136,7 +139,7 @@ router.get('/:username/orders', ensureLoggedIn, async (req, res, next) => {
     } catch (error) {
         return next(error);
     }
-})
+});
 
 router.patch('/:username', ensureLoggedIn, async (req, res, next) => {
     try {

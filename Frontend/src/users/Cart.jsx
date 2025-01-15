@@ -42,7 +42,7 @@ const Cart = () => {
         const price = total;
         try {
             await axios.post('/api/cart/purchase', { items, price })
-            navigate('/');
+            navigate('/order-confirmation');
         } catch (error) {
             console.error(error);
             alert('Failed to complete order')
@@ -231,7 +231,7 @@ const Cart = () => {
                                     </div>
                                     <hr className="mb-4" />
                                     <div className='d-grid gap-2'>
-                                        <button className="btn btn-primary" type="submit">Confirm Purchase</button>
+                                        <button className={`btn btn-primary  ${cart ? "" : "disabled"}`} type="submit">Confirm Purchase</button>
                                     </div>
                                 </form>
                             </div>

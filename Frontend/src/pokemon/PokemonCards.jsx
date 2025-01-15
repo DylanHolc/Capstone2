@@ -2,12 +2,17 @@ import React, { useEffect, useState } from "react";
 import { v4 as uuid } from "uuid"
 import axios from "axios";
 import PokemonTemplate from "./PokemonTemplate";
+import Pagination from "../Pagination";
 import { Spinner } from "reactstrap";
 
 
 const PokemonCards = () => {
+
     const [cards, setCards] = useState([]);
     const [isLoaded, setIsLoaded] = useState(false);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [postsPerPage] = useState(24);
+
     useEffect(function loadCards() {
         async function requestCards() {
             try {
@@ -21,13 +26,19 @@ const PokemonCards = () => {
         requestCards();
     }, [])
 
+    const idxOfLastCard = currentPage * postsPerPage;
+    const idxOfFirstCard = idxOfLastCard - postsPerPage;
+    const currentCards = cards.slice(idxOfFirstCard, idxOfLastCard);
+
+    const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
     return (
         <>
             {isLoaded ? (
                 <div className="container-fluid text-center">
                     <h1 className="mb-5"><strong>Pokemon</strong></h1>
                     <div className="row">
-                        {cards.map((c) => (
+                        {currentCards.map((c) => (
                             <div key={uuid()} className="col-12 col-md-6 col-xl-4 col-xxl-3">
                                 <PokemonTemplate
                                     id={c.id}
@@ -41,6 +52,7 @@ const PokemonCards = () => {
                             </div>
                         ))}
                     </div>
+                    <Pagination postsPerPage={postsPerPage} totalPosts={cards.length} paginate={paginate} />
                 </div>
             ) : (
                 <div className="d-flex justify-content-center m-5">

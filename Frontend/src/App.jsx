@@ -15,7 +15,9 @@ import Profile from './users/Profile'
 import Register from './users/Register'
 import EditProfile from './users/EditProfile'
 import ChangePassword from './users/ChangePassword'
+import DeleteProfile from './users/DeleteProfile'
 import Cart from './users/Cart'
+import OrderConfirmation from './users/OrderConfirmation'
 import Cookies from 'js-cookie'
 import './styles/App.css'
 
@@ -34,7 +36,7 @@ function App() {
   }, [isLoggedIn]);
 
   return (
-    <>
+    <div className='content'>
       <BrowserRouter>
         <MyNavbar isLoggedIn={isLoggedIn} />
         <Routes>
@@ -45,7 +47,9 @@ function App() {
           <Route path="/:username" element={<Profile />} />
           <Route path="/:username/edit" element={<EditProfile />} />
           <Route path="/:username/password" element={<ChangePassword />} />
+          <Route path="/:username/delete" element={<DeleteProfile setIsLoggedIn={setIsLoggedIn} />} />
           <Route path="/cart" element={<Cart />} />
+          <Route path="/order-confirmation" element={<OrderConfirmation />} />
           <Route path="/yugioh/cards" element={<YugiohCards />} />
           <Route path="/yugioh/cards/:id" element={<YugiohCard />} />
           <Route path="/pokemon/cards" element={<PokemonCards />} />
@@ -56,7 +60,7 @@ function App() {
         </Routes>
         <Footer />
       </BrowserRouter>
-    </>
+    </div>
   )
 }
 
