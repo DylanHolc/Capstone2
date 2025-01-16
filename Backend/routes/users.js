@@ -33,7 +33,7 @@ router.post('/register', async (req, res, next) => {
         return res.cookie('auth_token', token, {
             httpOnly: true, // make the cookie inaccessible to client-side JavaScript
             secure: true, // require HTTPS for cookie transmission
-            sameSite: 'strict', // prevent cross-site request forgery (CSRF)
+            sameSite: 'none', // prevent cross-site request forgery (CSRF)
             maxAge: 7200000 // expire the cookie after 1 hour
         }).status(201).json({ message: "User Created!" });
     } catch (error) {
@@ -57,7 +57,7 @@ router.post('/login', async (req, res, next) => {
                 return res.cookie('auth_token', token, {
                     httpOnly: true,
                     secure: true,
-                    sameSite: 'strict',
+                    sameSite: 'none',
                     maxAge: 7200000
                 }).status(200).json({ message: "Logged In!" });
             }
