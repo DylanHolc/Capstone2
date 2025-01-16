@@ -6,6 +6,7 @@ import Pagination from "../Pagination";
 import { Spinner } from "reactstrap";
 import { Search } from "react-bootstrap-icons";
 import { useNavigate } from "react-router-dom";
+const api = import.meta.env.VITE_BACKEND_API;
 
 const PokemonCards = () => {
 
@@ -19,7 +20,7 @@ const PokemonCards = () => {
     useEffect(function loadCards() {
         async function requestCards() {
             try {
-                const res = await axios.get("/api/pokemon/cards");
+                const res = await axios.get(`${api}/pokemon/cards`);
                 setCards(res.data);
                 setIsLoaded(!isLoaded);
             } catch (error) {

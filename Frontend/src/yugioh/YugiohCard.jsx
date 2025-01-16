@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import { Spinner } from "reactstrap";
 import YugiohTemplate from "./YugiohTemplate";
 import { useNavigate } from "react-router-dom";
+const api = import.meta.env.VITE_BACKEND_API;
 
 const YugiohCard = () => {
 
@@ -18,9 +19,9 @@ const YugiohCard = () => {
     useEffect(() => {
         async function requestCards() {
             try {
-                const cardRes = await axios.get(`/api/yugioh/cards/${id}`);
+                const cardRes = await axios.get(`${api}/yugioh/cards/${id}`);
                 setCard(cardRes.data);
-                const res = await axios.get("/api/yugioh/random");
+                const res = await axios.get(`${api}/yugioh/random`);
                 setRecommendations(res.data);
                 setIsLoaded(!isLoaded);
             } catch (error) {
@@ -39,7 +40,7 @@ const YugiohCard = () => {
         const type = "yugioh";
         const formData = { type, id, quantity: parseFloat(quantity) };
         try {
-            await axios.post(`/api/cart`, formData);
+            await axios.post(`${api}/cart`, formData);
             alert("Item added to cart");
 
         } catch (error) {

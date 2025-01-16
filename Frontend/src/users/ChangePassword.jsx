@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
+const api = import.meta.env.VITE_BACKEND_API;
 
 const ChangePassword = () => {
     const { username } = useParams();
@@ -12,7 +13,7 @@ const ChangePassword = () => {
         e.preventDefault();
         const formData = { oldPassword, newPassword };
         try {
-            await axios.patch(`/api/users/${username}/password`, formData);
+            await axios.patch(`${api}/users/${username}/password`, formData);
             navigate(`/${username}`);
         } catch (error) {
             console.log(error);

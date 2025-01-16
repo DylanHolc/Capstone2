@@ -6,8 +6,7 @@ import { Spinner } from 'reactstrap';
 import { Search } from 'react-bootstrap-icons';
 import YugiohTemplate from './YugiohTemplate';
 import Pagination from "../Pagination";
-
-
+const api = import.meta.env.VITE_BACKEND_API;
 
 const YugiohSearch = () => {
 
@@ -23,7 +22,7 @@ const YugiohSearch = () => {
     useEffect(() => {
         async function searchCards() {
             try {
-                const res = await axios.get(`/api/yugioh/search/${term}`);
+                const res = await axios.get(`${api}/yugioh/search/${term}`);
                 setCards(res.data);
                 setIsLoaded(!isLoaded);
 

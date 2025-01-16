@@ -5,6 +5,8 @@ import { useParams } from "react-router-dom";
 import PokemonTemplate from "./PokemonTemplate";
 import { Spinner } from "reactstrap";
 import { useNavigate } from "react-router-dom";
+const api = import.meta.env.VITE_BACKEND_API;
+
 
 const PokemonCard = () => {
     const { id } = useParams();
@@ -17,9 +19,9 @@ const PokemonCard = () => {
     useEffect(() => {
         async function requestCards() {
             try {
-                const cardRes = await axios.get(`/api/pokemon/cards/${id}`);
+                const cardRes = await axios.get(`${api}/pokemon/cards/${id}`);
                 setCard(cardRes.data);
-                const res = await axios.get("/api/pokemon/random");
+                const res = await axios.get(`${api}/pokemon/random`);
                 setRecommendations(res.data);
                 setIsLoaded(!isLoaded);
 
@@ -39,7 +41,7 @@ const PokemonCard = () => {
         const type = "pokemon";
         const formData = { type, id, quantity: parseFloat(quantity) };
         try {
-            await axios.post(`/api/cart`, formData);
+            await axios.post(`${api}/cart`, formData);
             alert("Item added to cart");
 
         } catch (error) {

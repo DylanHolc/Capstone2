@@ -3,6 +3,7 @@ import axios from 'axios';
 import Cookies from 'js-cookie';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useNavigate } from 'react-router-dom';
+const api = import.meta.env.VITE_BACKEND_API;
 
 const Login = ({ setIsLoggedIn }) => {
     const [username, setUsername] = useState('');
@@ -14,7 +15,7 @@ const Login = ({ setIsLoggedIn }) => {
         e.preventDefault();
         const formData = { username, password };
         try {
-            await axios.post('/api/users/login', formData);
+            await axios.post(`${api}/users/login`, formData);
             Cookies.set('username', username);
             setIsLoggedIn(true);
             navigate(`/${username}`);

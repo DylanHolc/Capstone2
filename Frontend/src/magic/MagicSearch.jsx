@@ -6,8 +6,7 @@ import { Spinner } from 'reactstrap';
 import { Search } from 'react-bootstrap-icons';
 import MagicTemplate from './MagicTemplate';
 import Pagination from "../Pagination";
-
-
+const api = import.meta.env.VITE_BACKEND_API;
 
 const MagicSearch = () => {
 
@@ -23,7 +22,7 @@ const MagicSearch = () => {
     useEffect(() => {
         async function searchCards() {
             try {
-                const res = await axios.get(`/api/mtg/search/${term}`);
+                const res = await axios.get(`${api}/mtg/search/${term}`);
                 setCards(res.data);
                 setIsLoaded(!isLoaded);
 

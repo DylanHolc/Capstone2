@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import Cookies from 'js-cookie';
 import { useParams, useNavigate } from 'react-router-dom';
+const api = import.meta.env.VITE_BACKEND_API;
 
 const Register = ({ setIsLoggedIn }) => {
     const [formData, setFormData] = useState({
@@ -25,7 +26,7 @@ const Register = ({ setIsLoggedIn }) => {
         e.preventDefault();
         const data = { username: formData.username, password: formData.password, first_name: formData.firstName, last_name: formData.lastName, email: formData.email };
         try {
-            await axios.post('/api/users/register', data);
+            await axios.post(`${api}/users/register`, data);
             Cookies.set('username', formData.username);
             setIsLoggedIn(true);
             navigate(`/${formData.username}`);

@@ -4,6 +4,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { Spinner } from "reactstrap";
 import { PersonBadgeFill } from "react-bootstrap-icons";
 import Cookies from 'js-cookie';
+const api = import.meta.env.VITE_BACKEND_API;
 
 const DeleteProfile = ({ setIsLoggedIn }) => {
 
@@ -14,7 +15,7 @@ const DeleteProfile = ({ setIsLoggedIn }) => {
     useEffect(() => {
         const getUser = async () => {
             try {
-                const res = await axios.get(`/api/users/${username}`);
+                const res = await axios.get(`${api}/users/${username}`);
                 setUser(res.data);
                 setIsLoaded(!isLoaded);
             } catch (err) {
@@ -27,8 +28,8 @@ const DeleteProfile = ({ setIsLoggedIn }) => {
 
     const handleDelete = async () => {
         if (window.confirm('Are you sure you want to delete your profile?')) {
-            await axios.delete(`/api/users/${username}`);
-            await axios.post('/api/users/logout');
+            await axios.delete(`${api}/users/${username}`);
+            await axios.post(`${api}/users/logout`);
             Cookies.remove('username');
             setIsLoggedIn(false);
             navigate('/');

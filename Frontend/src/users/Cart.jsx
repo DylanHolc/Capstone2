@@ -3,6 +3,7 @@ import axios from 'axios';
 import { v4 as uuid } from 'uuid';
 import { X } from 'react-bootstrap-icons';
 import { useNavigate, Link } from 'react-router-dom';
+const api = import.meta.env.VITE_BACKEND_API;
 
 const Cart = () => {
 
@@ -41,7 +42,7 @@ const Cart = () => {
         const items = cart;
         const price = total;
         try {
-            await axios.post('/api/cart/purchase', { items, price })
+            await axios.post(`${api}/cart/purchase`, { items, price })
             navigate('/order-confirmation');
         } catch (error) {
             console.error(error);
@@ -53,7 +54,7 @@ const Cart = () => {
     const handleRemove = (id) => async (e) => {
         e.preventDefault()
         try {
-            await axios.get(`/api/cart/delete/${id}`);
+            await axios.get(`${api}/cart/delete/${id}`);
             alert('Item removed from cart');
             window.location.reload();
         } catch (error) {
@@ -65,7 +66,7 @@ const Cart = () => {
     useEffect(() => {
         async function fetchCart() {
             try {
-                const res = await axios.get('/api/cart');
+                const res = await axios.get(`${api}/cart`);
                 if (res.data.items.length) {
                     setCart(res.data.items);
                     let totalPrice = 0;

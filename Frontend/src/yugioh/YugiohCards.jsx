@@ -6,6 +6,7 @@ import Pagination from "../Pagination";
 import { Spinner } from "reactstrap";
 import { Search } from "react-bootstrap-icons";
 import { useNavigate } from "react-router-dom";
+const api = import.meta.env.VITE_BACKEND_API;
 
 const YugiohCards = () => {
 
@@ -19,7 +20,7 @@ const YugiohCards = () => {
     useEffect(function loadCards() {
         async function requestCards() {
             try {
-                const res = await axios.get("/api/yugioh/cards");
+                const res = await axios.get(`${api}/yugioh/cards`);
                 setCards(res.data.cards);
                 setIsLoaded(!isLoaded);
             } catch (error) {

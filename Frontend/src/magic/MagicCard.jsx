@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import { Spinner } from "reactstrap";
 import MagicTemplate from "./MagicTemplate";
 import { useNavigate } from "react-router-dom";
+const api = import.meta.env.VITE_BACKEND_API;
 
 const MagicCard = () => {
     const { id } = useParams();
@@ -17,9 +18,9 @@ const MagicCard = () => {
     useEffect(() => {
         async function requestCard() {
             try {
-                const cardRes = await axios.get(`/api/mtg/cards/${id}`);
+                const cardRes = await axios.get(`${api}/mtg/cards/${id}`);
                 setCard(cardRes.data);
-                const res = await axios.get("/api/mtg/random");
+                const res = await axios.get(`${api}/mtg/random`);
                 setRecommendations(res.data);
                 setIsLoaded(!isLoaded);
 
@@ -39,7 +40,7 @@ const MagicCard = () => {
         const type = "mtg";
         const formData = { type, id, quantity: parseFloat(quantity) };
         try {
-            await axios.post(`/api/cart`, formData);
+            await axios.post(`${api}/cart`, formData);
             alert("Item added to cart");
 
         } catch (error) {

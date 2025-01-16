@@ -3,6 +3,7 @@ import axios from "axios";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { Spinner } from "reactstrap";
 import { PersonBadgeFill } from "react-bootstrap-icons";
+const api = import.meta.env.VITE_BACKEND_API;
 
 const Profile = () => {
     const { username } = useParams();
@@ -14,9 +15,9 @@ const Profile = () => {
     useEffect(() => {
         const getUserInfo = async () => {
             try {
-                const res = await axios.get(`/api/users/${username}`);
+                const res = await axios.get(`${api}/users/${username}`);
                 setUser(res.data);
-                const orderItems = await axios.get(`/api/users/${username}/orders`);
+                const orderItems = await axios.get(`${api}/users/${username}/orders`);
                 setOrders(orderItems.data);
                 setIsLoaded(!isLoaded);
             } catch (err) {

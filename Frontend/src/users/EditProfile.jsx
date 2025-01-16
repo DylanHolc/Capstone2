@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
+const api = import.meta.env.VITE_BACKEND_API;
 
 const EditProfile = () => {
 
@@ -17,7 +18,7 @@ const EditProfile = () => {
     useEffect(() => {
         const getUser = async () => {
             try {
-                const res = await axios.get(`/api/users/${username}`);
+                const res = await axios.get(`${api}/users/${username}`);
                 const user = res.data
                 setFormData({ username: user.username, first_name: user.first_name, last_name: user.last_name, email: user.email });
             } catch (err) {
@@ -39,7 +40,7 @@ const EditProfile = () => {
         e.preventDefault();
         const data = { username: formData.username, first_name: formData.first_name, last_name: formData.last_name, email: formData.email };
         try {
-            axios.patch(`/api/users/${username}`, data);
+            axios.patch(`${api}/users/${username}`, data);
             navigate(`/${username}`);
         } catch (error) {
             console.log(error);
