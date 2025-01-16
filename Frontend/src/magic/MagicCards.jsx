@@ -21,7 +21,7 @@ const MagicCards = () => {
     useEffect(function loadCards() {
         async function requestCards() {
             try {
-                const res = await axios.get(`${api}/mtg/cards`);
+                const res = await axios.get('/api/mtg/cards');
                 setCards(res.data.cards);
                 setIsLoaded(!isLoaded);
             } catch (error) {
