@@ -1,12 +1,18 @@
 const dotenv = require('dotenv');
 dotenv.config();
 const { Sequelize, DataTypes } = require('sequelize');
+const pg = require('pg')
 
 // const sequelize = new Sequelize(process.env.DATABASE, process.env.USERNAME, process.env.PASSWORD, {
 //     dialect: 'postgres'
 // });
 
-const sequelize = new Sequelize(process.env.SUPABASE_URI)
+const sequelize = new Sequelize(process.env.SUPABASE_URI,
+    {
+        dialectModule: pg,
+    }
+);
+
 const connect = async () => {
     try {
         await sequelize.authenticate();
