@@ -11,6 +11,7 @@ export default defineConfig({
         // target: 'http://localhost:3000',
         target: 'https://backend-omega-sooty-92.vercel.app',
         changeOrigin: true,
+        secure: true,
         rewrite: (path) => path.replace(/^\/api/, ''),
       },
     },
