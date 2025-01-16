@@ -6,7 +6,7 @@ const { Sequelize, DataTypes } = require('sequelize');
 //     dialect: 'postgres'
 // });
 
-const sequelize = new Sequelize('postgresql://postgres.gtfmmoajpvspgwvgudsv:XJ0GCxmJcbvl7xos@aws-0-us-west-1.pooler.supabase.com:5432/postgres')
+const sequelize = new Sequelize(process.env.SUPABASE_URI)
 const connect = async () => {
     try {
         await sequelize.authenticate();
