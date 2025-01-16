@@ -1,14 +1,17 @@
-import React, { useEffect, useState } from "react";
-import { v4 as uuid } from "uuid"
-import axios from "axios";
-import YugiohTemplate from "./YugiohTemplate";
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { v4 as uuid } from "uuid";
+import { useParams, useNavigate } from 'react-router-dom';
+import { Spinner } from 'reactstrap';
+import { Search } from 'react-bootstrap-icons';
+import YugiohTemplate from './YugiohTemplate';
 import Pagination from "../Pagination";
-import { Spinner } from "reactstrap";
-import { Search } from "react-bootstrap-icons";
-import { useNavigate } from "react-router-dom";
 
-const YugiohCards = () => {
 
+
+const YugiohSearch = () => {
+
+    const { term } = useParams();
     const [cards, setCards] = useState([]);
     const [isLoaded, setIsLoaded] = useState(false);
     const [searchTerm, setSearchTerm] = useState("");
@@ -16,23 +19,26 @@ const YugiohCards = () => {
     const [postsPerPage] = useState(24);
     const navigate = useNavigate();
 
-    useEffect(function loadCards() {
-        async function requestCards() {
+
+    useEffect(() => {
+        async function searchCards() {
             try {
-                const res = await axios.get("/api/yugioh/cards");
-                setCards(res.data.cards);
+                const res = await axios.get(`/api/yugioh/search/${term}`);
+                setCards(res.data);
                 setIsLoaded(!isLoaded);
+
             } catch (error) {
                 console.error(error);
             }
         }
-        requestCards();
-    }, [])
+        searchCards();
+    }, []);
 
     const handleSearch = async (e) => {
         e.preventDefault();
         try {
             navigate(`/yugioh/search/${searchTerm}`);
+            window.location.reload();
         } catch (error) {
             console.error(error);
             navigate('/yugioh/cards');
@@ -43,7 +49,6 @@ const YugiohCards = () => {
     const handleChange = (e) => {
         setSearchTerm(e.target.value);
     }
-
 
     const idxOfLastCard = currentPage * postsPerPage;
     const idxOfFirstCard = idxOfLastCard - postsPerPage;
@@ -84,7 +89,7 @@ const YugiohCards = () => {
                 </div>
             )}
         </>
-    )
-}
+    );
+};
 
-export default YugiohCards;
+export default YugiohSearch;

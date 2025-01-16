@@ -4,6 +4,8 @@ const express = require('express');
 const ExpressError = require('../expressError');
 const router = new express.Router();
 const PokemonCard = require('../models/pokemonCard');
+const sequelize = require('sequelize')
+const Op = sequelize.Op;
 
 router.get('/cards', async (req, res, next) => {
     try {
@@ -31,6 +33,20 @@ router.get('/random', async (req, res, next) => {
     try {
         const randomCards = await PokemonCard.getRandom();
         return res.json(randomCards);
+    } catch (error) {
+        return next(error);
+    }
+});
+
+router.get('/search/:term', async (req, res, next) => {
+    try {
+        const { term } = req.params
+        const cards = await PokemonCard.findAll({
+            where: {
+                name: { [Op.like]: '%' + term + '%' }
+            }
+        });
+        return res.json(cards);
     } catch (error) {
         return next(error);
     }

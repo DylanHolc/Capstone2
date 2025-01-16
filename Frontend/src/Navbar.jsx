@@ -36,7 +36,7 @@ const MyNavbar = ({ isLoggedIn }) => {
             ) : (
                 <div>
                     <Link className='btn btn-info text-light fw-bold me-4' to={"/register"}>Register</Link>
-                    <Link className='btn btn-secondary fw-bold me-4' to={"/login"}>Login</Link>
+                    <Link className='btn btn-primary fw-bold me-4' to={"/login"}>Login</Link>
                 </div>
             )}
             <Link className="navbar-brand" to="/cart"><CartFill size={"1.5em"} color='black' className='m-2' /></Link>

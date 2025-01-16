@@ -3,8 +3,7 @@ import axios from 'axios';
 import Cookies from 'js-cookie';
 import { useParams, useNavigate } from 'react-router-dom';
 
-const Register = () => {
-    const { username } = useParams();
+const Register = ({ setIsLoggedIn }) => {
     const [formData, setFormData] = useState({
         username: '',
         password: '',
@@ -28,7 +27,8 @@ const Register = () => {
         try {
             await axios.post('/api/users/register', data);
             Cookies.set('username', formData.username);
-            navigate('/');
+            setIsLoggedIn(true);
+            navigate(`/${formData.username}`);
         } catch (error) {
             console.log(error);
             navigate('/register');
@@ -99,7 +99,9 @@ const Register = () => {
                         required
                     />
                 </div>
-                <button type="submit" className="btn btn-primary">Register</button>
+                <div className='d-flex justify-content-center pt-4 pb-5 mb-5'>
+                    <button type="submit" className="btn btn-info text-light col-6 fw-bold">Register</button>
+                </div>
             </form>
         </div>
     );

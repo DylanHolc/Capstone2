@@ -5,10 +5,13 @@ import MyNavbar from './Navbar'
 import Footer from './Footer'
 import YugiohCards from './yugioh/YugiohCards'
 import YugiohCard from './yugioh/YugiohCard'
+import YugiohSearch from './yugioh/YugiohSearch'
 import MagicCards from './magic/MagicCards'
 import MagicCard from './magic/MagicCard'
+import MagicSearch from './magic/MagicSearch'
 import PokemonCards from './pokemon/PokemonCards'
 import PokemonCard from './pokemon/PokemonCard'
+import PokemonSearch from './pokemon/PokemonSearch'
 import Login from './users/Login'
 import Logout from './users/Logout'
 import Profile from './users/Profile'
@@ -43,7 +46,7 @@ function App() {
           <Route path="/" element={<Homepage />} />
           <Route path="/login" element={<Login setIsLoggedIn={setIsLoggedIn} />} />
           <Route path="/logout" element={<Logout setIsLoggedIn={setIsLoggedIn} />} />
-          <Route path="/register" element={<Register />} />
+          <Route path="/register" element={<Register setIsLoggedIn={setIsLoggedIn} />} />
           <Route path="/:username" element={<Profile />} />
           <Route path="/:username/edit" element={<EditProfile />} />
           <Route path="/:username/password" element={<ChangePassword />} />
@@ -52,10 +55,13 @@ function App() {
           <Route path="/order-confirmation" element={<OrderConfirmation />} />
           <Route path="/yugioh/cards" element={<YugiohCards />} />
           <Route path="/yugioh/cards/:id" element={<YugiohCard />} />
+          <Route path="/yugioh/search/:term" element={<YugiohSearch />} />
           <Route path="/pokemon/cards" element={<PokemonCards />} />
           <Route path="/pokemon/cards/:id" element={<PokemonCard />} />
+          <Route path="/pokemon/search/:term" element={<PokemonSearch />} />
           <Route path="/mtg/cards" element={<MagicCards />} />
           <Route path="/mtg/cards/:id" element={<MagicCard />} />
+          <Route path="/mtg/search/:term" element={<MagicSearch />} />
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
         <Footer />

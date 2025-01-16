@@ -26,7 +26,7 @@ const Login = ({ setIsLoggedIn }) => {
     };
 
     return (
-        <div className="container mt-5">
+        <div className="container mt-5 mb-5">
             <div className="row justify-content-center">
                 <div className="col-md-6">
                     <div className="card">
@@ -57,9 +57,11 @@ const Login = ({ setIsLoggedIn }) => {
                                         required
                                     />
                                 </div>
-                                <button type="submit" className="btn btn-primary mt-3">
-                                    Login
-                                </button>
+                                <div className='d-flex justify-content-end p-2 mt-1'>
+                                    <button type="submit" className="btn btn-primary mt-3 fw-bold ">
+                                        Login
+                                    </button>
+                                </div>
                             </form>
                         </div>
                     </div>
