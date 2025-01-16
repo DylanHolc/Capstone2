@@ -9,7 +9,7 @@ export default defineConfig({
     proxy: {
       '/api': {
         // target: 'http://localhost:3000',
-        target: 'https://backend-nine-kappa-61.vercel.app/',
+        target: 'https://backend-omega-sooty-92.vercel.app',
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ''),
       },
