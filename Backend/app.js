@@ -15,6 +15,8 @@ const cookieParser = require('cookie-parser');
 const { Sequelize } = require('sequelize');
 const sequelize = require('./sequelize');
 const cors = require('cors');
+const session = require('express-session');
+const MemoryStore = require('memorystore')(session);
 require('./models/associations');
 
 app.use(express.json());
@@ -35,6 +37,9 @@ app.use((req, res, next) => {
 app.use(cookieParser());
 app.use(session({
     secret: process.env.SESSION_SECRET,
+    store: new MemoryStore({
+        checkPeriod: 86400000
+    }),
     resave: false,
     saveUninitialized: false,
     cookie: { maxAge: 30 * 24 * 60 * 60 * 1000 },

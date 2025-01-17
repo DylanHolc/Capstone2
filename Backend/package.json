@@ -11,6 +11,7 @@
     "jimp": "^1.6.0",
     "js-cookie": "^3.0.5",
     "jsonwebtoken": "^9.0.2",
+    "memorystore": "^1.6.7",
     "morgan": "^1.10.0",
     "pg": "^8.13.1",
     "pg-hstore": "^2.3.4",
