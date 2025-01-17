@@ -105,7 +105,7 @@ const Profile = () => {
                         </div>
                         <hr />
                         <div>
-                            <h2 className="d-flex justify-content-center">Previous Orders</h2>
+                            <h2 className="d-flex justify-content-center">Previously Ordered</h2>
                         </div>
                         <div className="mt-4">
                             {orders.map((order) => (
