@@ -28,4 +28,5 @@ This app utilizes a multitude of programming languages and subsequent packages i
 --CSS
 and more
 
-Deployment Link: 
+ Backend Deployment Link: 
+ Frontend Deployment Link: 
