@@ -21,7 +21,7 @@ require('./models/associations');
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors({
-    origin: 'https://capstone2-a7ypx2ikc-dylanholcs-projects.vercel.app',
+    origin: 'https://www.capstone2frontend.xyz',
     credentials: true,
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     allowedHeaders: 'Content-Type,Authorization',
