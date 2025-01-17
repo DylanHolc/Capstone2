@@ -15,7 +15,6 @@ const cookieParser = require('cookie-parser');
 const { Sequelize } = require('sequelize');
 const sequelize = require('./sequelize');
 const cors = require('cors');
-const session = require('express-session');
 const MemoryStore = require('memorystore')(session);
 require('./models/associations');
 
