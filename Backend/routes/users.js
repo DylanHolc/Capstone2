@@ -82,7 +82,7 @@ router.post('/logout', async (req, res, next) => {
     }
 });
 
-router.get('/:username', , async (req, res, next) => {
+router.get('/:username', async (req, res, next) => {
     try {
         const { username } = req.params;
         const user = await User.findByPk(username);
@@ -92,7 +92,7 @@ router.get('/:username', , async (req, res, next) => {
     }
 });
 
-router.get('/:username/orders', , async (req, res, next) => {
+router.get('/:username/orders', async (req, res, next) => {
     try {
         const { username } = req.params;
         const orders = await Order.findAll({ where: { user_username: username } })
@@ -141,7 +141,7 @@ router.get('/:username/orders', , async (req, res, next) => {
     }
 });
 
-router.patch('/:username', , async (req, res, next) => {
+router.patch('/:username', async (req, res, next) => {
     try {
         const { username, first_name, last_name, email } = req.body;
         const results = await User.update({ username, first_name, last_name, email }, {
@@ -155,7 +155,7 @@ router.patch('/:username', , async (req, res, next) => {
     }
 });
 
-router.patch('/:username/password', , async (req, res, next) => {
+router.patch('/:username/password', async (req, res, next) => {
     try {
         const { username } = req.params;
         const { oldPassword, newPassword } = req.body;
