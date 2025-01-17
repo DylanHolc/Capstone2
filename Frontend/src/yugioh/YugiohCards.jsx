@@ -55,7 +55,7 @@ const YugiohCards = () => {
         <>
             {isLoaded ? (
                 <div className="container-fluid text-center">
-                    <h1 className="mb-5"><strong>Yu-Gi-Oh</strong></h1>
+                    <h1 className="m-5"><strong>Yu-Gi-Oh</strong></h1>
                     <form className="d-flex justify-content-center mb-5" onSubmit={handleSearch}>
                         <input type="text" id="term" name="term" className="col-6 p-1" placeholder="Search" onChange={handleChange} onSubmit={handleSearch} />
                         <Search className="my-auto ms-3 search" size={"1.25em"} onClick={handleSearch} />
