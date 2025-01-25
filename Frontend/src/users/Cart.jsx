@@ -7,7 +7,6 @@ import { Spinner } from 'reactstrap';
 
 const Cart = () => {
 
-    const [isLoaded, setIsLoaded] = useState(false);
     const [cart, setCart] = useState();
     const [total, setTotal] = useState(0);
     const [tax, setTax] = useState(0);
@@ -52,7 +51,6 @@ const Cart = () => {
     };
 
     const handleRemove = (id) => async () => {
-        setIsLoaded(false);
         try {
             await axios.get(`/api/cart/delete/${id}`);
         } catch (error) {
@@ -75,7 +73,6 @@ const Cart = () => {
                 } else {
                     setTotal(totalPrice + salesTax + 7.99);
                 }
-                setIsLoaded(true);
             }
         } catch (error) {
             console.error(error);
@@ -101,7 +98,6 @@ const Cart = () => {
                     } else {
                         setTotal(totalPrice + salesTax + 7.99);
                     }
-                    setIsLoaded(!isLoaded);
                 }
             } catch (error) {
                 console.error(error);
