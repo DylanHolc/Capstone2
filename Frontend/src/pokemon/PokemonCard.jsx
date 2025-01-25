@@ -65,6 +65,7 @@ const PokemonCard = () => {
 
 
     const handleCardClick = (id) => {
+        setIsLoaded(!isLoaded);
         navigate(`/pokemon/cards/${id}`);
         reloadPage();
     };
