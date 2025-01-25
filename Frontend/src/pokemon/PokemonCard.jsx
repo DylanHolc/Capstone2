@@ -56,7 +56,6 @@ const PokemonCard = () => {
             setCard(cardRes.data);
             const res = await axios.get("/api/pokemon/random");
             setRecommendations(res.data);
-            setIsLoaded(!isLoaded);
 
         } catch (error) {
             console.error(error);
@@ -65,7 +64,6 @@ const PokemonCard = () => {
 
 
     const handleCardClick = (id) => {
-        setIsLoaded(!isLoaded);
         navigate(`/pokemon/cards/${id}`);
         reloadPage();
     };
