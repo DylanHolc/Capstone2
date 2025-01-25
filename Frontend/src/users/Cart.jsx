@@ -53,10 +53,31 @@ const Cart = () => {
         e.preventDefault()
         try {
             await axios.get(`/api/cart/delete/${id}`);
+
             alert('Item removed from cart');
         } catch (error) {
             console.error(error);
             alert('Error removing item from cart');
+        }
+        try {
+            const res = await axios.get('/api/cart');
+            if (res.data.items.length) {
+                setCart(res.data.items);
+                let totalPrice = 0;
+                for (let item of res.data.items) {
+                    totalPrice += (item.price * item.quantity);
+                }
+                let salesTax = totalPrice * 0.07;
+                setTax(salesTax);
+                setSubtotal(totalPrice);
+                if (totalPrice > 50) {
+                    setTotal(totalPrice + salesTax);
+                } else {
+                    setTotal(totalPrice + salesTax + 7.99);
+                }
+            }
+        } catch (error) {
+            console.error(error);
         }
         navigate('/cart');
     };
@@ -80,7 +101,6 @@ const Cart = () => {
                         setTotal(totalPrice + salesTax + 7.99);
                     }
                 }
-                console.log(cart);
             } catch (error) {
                 console.error(error);
             }
