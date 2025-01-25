@@ -51,11 +51,13 @@ const YugiohCard = () => {
     };
 
     const handleCardClick = async (id) => {
+        setIsLoaded(false);
         try {
             const cardRes = await axios.get(`/api/yugioh/cards/${id}`);
             setCard(cardRes.data);
             const res = await axios.get("/api/yugioh/random");
             setRecommendations(res.data);
+            setIsLoaded(true);
         } catch (error) {
             console.error(error);
         }

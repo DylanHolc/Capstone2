@@ -54,11 +54,11 @@ const Cart = () => {
         try {
             await axios.get(`/api/cart/delete/${id}`);
             alert('Item removed from cart');
-            window.location.reload();
         } catch (error) {
             console.error(error);
             alert('Error removing item from cart');
         }
+        navigate('/cart');
     };
 
     useEffect(() => {
