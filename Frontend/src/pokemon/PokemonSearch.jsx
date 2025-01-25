@@ -6,7 +6,6 @@ import { Spinner } from 'reactstrap';
 import { Search } from 'react-bootstrap-icons';
 import PokemonTemplate from './PokemonTemplate';
 import Pagination from "../Pagination";
-import { set } from '../../../Backend/app';
 
 
 
