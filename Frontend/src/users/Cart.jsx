@@ -50,8 +50,7 @@ const Cart = () => {
 
     };
 
-    const handleRemove = (id) => async (e) => {
-        e.preventDefault()
+    const handleRemove = (id) => async () => {
         setIsLoaded(false);
         try {
             await axios.get(`/api/cart/delete/${id}`);
