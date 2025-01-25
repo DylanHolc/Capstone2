@@ -51,8 +51,7 @@ const PokemonCard = () => {
     };
 
     const handleCardClick = (id) => {
-        window.location.href = `/pokemon/cards/${id}`;
-        window.location.reload();
+        navigate(`/pokemon/cards/${id}`);
     };
 
     return (
