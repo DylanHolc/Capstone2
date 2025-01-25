@@ -101,7 +101,7 @@ const Cart = () => {
                     } else {
                         setTotal(totalPrice + salesTax + 7.99);
                     }
-                    setIsLoaded(true);
+                    setIsLoaded(!isLoaded);
                 }
             } catch (error) {
                 console.error(error);
