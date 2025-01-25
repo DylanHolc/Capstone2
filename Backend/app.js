@@ -12,6 +12,7 @@ const cartRoutes = require('./routes/cart');
 const { authenticateJWT } = require('./middleware/auth');
 const morgan = require('morgan');
 const cookieParser = require('cookie-parser');
+const MemoryStore = require('memorystore')(session);
 require('./models/associations');
 
 app.use(express.json());
@@ -19,6 +20,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(session({
     secret: process.env.SESSION_SECRET,
+    store: new MemoryStore({
+        checkPeriod: 86400000
+    }),
     resave: false,
     saveUninitialized: false,
     cookie: { maxAge: 30 * 24 * 60 * 60 * 1000 },
