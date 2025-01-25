@@ -34,8 +34,7 @@ const PokemonSearch = () => {
         searchCards();
     }, []);
 
-    const handleSearch = async (e) => {
-        e.preventDefault();
+    const handleSearch = async () => {
         setIsLoaded(false);
         try {
             const res = await axios.get(`/api/pokemon/search/${term}`);
