@@ -3,9 +3,11 @@ import axios from 'axios';
 import { v4 as uuid } from 'uuid';
 import { X } from 'react-bootstrap-icons';
 import { useNavigate, Link } from 'react-router-dom';
+import { set } from '../../../Backend/app';
 
 const Cart = () => {
 
+    const [isLoaded, setIsLoaded] = useState(false);
     const [cart, setCart] = useState();
     const [total, setTotal] = useState(0);
     const [tax, setTax] = useState(0);
@@ -51,10 +53,9 @@ const Cart = () => {
 
     const handleRemove = (id) => async (e) => {
         e.preventDefault()
+        setIsLoaded(false);
         try {
             await axios.get(`/api/cart/delete/${id}`);
-
-            alert('Item removed from cart');
         } catch (error) {
             console.error(error);
             alert('Error removing item from cart');
@@ -75,6 +76,7 @@ const Cart = () => {
                 } else {
                     setTotal(totalPrice + salesTax + 7.99);
                 }
+                setIsLoaded(true);
             }
         } catch (error) {
             console.error(error);
@@ -100,6 +102,7 @@ const Cart = () => {
                     } else {
                         setTotal(totalPrice + salesTax + 7.99);
                     }
+                    setIsLoaded(true);
                 }
             } catch (error) {
                 console.error(error);
