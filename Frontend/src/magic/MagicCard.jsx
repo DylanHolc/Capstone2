@@ -51,11 +51,13 @@ const MagicCard = () => {
     };
 
     const handleCardClick = async (id) => {
+        setIsLoaded(false);
         try {
             const cardRes = await axios.get(`/api/mtg/cards/${id}`);
             setCard(cardRes.data);
             const res = await axios.get("/api/mtg/random");
             setRecommendations(res.data);
+            setIsLoaded(true);
         } catch (error) {
             console.error(error);
         }
