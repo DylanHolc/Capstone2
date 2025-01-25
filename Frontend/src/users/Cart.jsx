@@ -3,7 +3,6 @@ import axios from 'axios';
 import { v4 as uuid } from 'uuid';
 import { X } from 'react-bootstrap-icons';
 import { useNavigate, Link } from 'react-router-dom';
-import { set } from '../../../Backend/app';
 
 const Cart = () => {
 
