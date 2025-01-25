@@ -2,7 +2,7 @@
     "rewrites": [
         {
             "source": "/api/:path(.*)",
-            "destination": "https://capstone2backend.xyz"
+            "destination": "https://capstone2backend.xyz/api/:path"
         },
         {
             "source": "/(.*)",
