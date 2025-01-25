@@ -64,8 +64,8 @@ const PokemonCard = () => {
 
 
     const handleCardClick = async (id) => {
-        navigate(`/pokemon/cards/${id}`);
         await reloadPage();
+        navigate(`/pokemon/cards/${id}`);
     };
 
     return (
