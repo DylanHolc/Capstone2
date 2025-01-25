@@ -6,6 +6,7 @@ import { Spinner } from 'reactstrap';
 import { Search } from 'react-bootstrap-icons';
 import PokemonTemplate from './PokemonTemplate';
 import Pagination from "../Pagination";
+import { set } from '../../../Backend/app';
 
 
 
@@ -36,14 +37,17 @@ const PokemonSearch = () => {
 
     const handleSearch = async (e) => {
         e.preventDefault();
+        setIsLoaded(false);
         try {
-            navigate(`/pokemon/search/${searchTerm}`);
-            window.location.reload();
+            const res = await axios.get(`/api/pokemon/search/${term}`);
+            setCards(res.data);
+            setIsLoaded(true);
         } catch (error) {
             console.error(error);
             navigate('/pokemon/cards');
 
         }
+        navigate(`/pokemon/search/${searchTerm}`);
     }
 
     const handleChange = (e) => {
