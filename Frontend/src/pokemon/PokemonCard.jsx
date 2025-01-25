@@ -51,20 +51,7 @@ const PokemonCard = () => {
     };
 
     const handleCardClick = (id) => {
-        window.location.href = `/pokemon/cards/${id}`;
-        async function requestCards() {
-            try {
-                const cardRes = await axios.get(`/api/pokemon/cards/${id}`);
-                setCard(cardRes.data);
-                const res = await axios.get("/api/pokemon/random");
-                setRecommendations(res.data);
-                setIsLoaded(!isLoaded);
-
-            } catch (error) {
-                console.error(error);
-            }
-        }
-        requestCards();
+        window.location.href = `/api/pokemon/cards/${id}`;
     };
 
     return (
