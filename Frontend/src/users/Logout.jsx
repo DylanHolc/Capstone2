@@ -9,7 +9,7 @@ const Logout = ({ setIsLoggedIn }) => {
     useEffect(() => {
         const logout = async () => {
             try {
-                await axios.post('/users/logout');
+                await axios.post('/api/users/logout');
                 Cookies.remove('username');
                 setIsLoggedIn(false);
                 navigate('/');
