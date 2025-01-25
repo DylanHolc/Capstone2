@@ -50,8 +50,23 @@ const PokemonCard = () => {
         }
     };
 
+    const reloadPage = async () => {
+        try {
+            const cardRes = await axios.get(`/api/pokemon/cards/${id}`);
+            setCard(cardRes.data);
+            const res = await axios.get("/api/pokemon/random");
+            setRecommendations(res.data);
+            setIsLoaded(!isLoaded);
+
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+
     const handleCardClick = (id) => {
         navigate(`/pokemon/cards/${id}`);
+        reloadPage();
     };
 
     return (
