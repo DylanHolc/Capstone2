@@ -50,8 +50,16 @@ const YugiohCard = () => {
         }
     };
 
-    const handleCardClick = (id) => {
-        window.location.href = `/yugioh/cards/${id}`;
+    const handleCardClick = async (id) => {
+        try {
+            const cardRes = await axios.get(`/api/yugioh/cards/${id}`);
+            setCard(cardRes.data);
+            const res = await axios.get("/api/yugioh/random");
+            setRecommendations(res.data);
+        } catch (error) {
+            console.error(error);
+        }
+        navigate(`/yugioh/cards/${id}`);
     };
 
     return (

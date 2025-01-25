@@ -50,8 +50,16 @@ const MagicCard = () => {
         }
     };
 
-    const handleCardClick = (id) => {
-        window.location.href = `/mtg/cards/${id}`;
+    const handleCardClick = async (id) => {
+        try {
+            const cardRes = await axios.get(`/api/mtg/cards/${id}`);
+            setCard(cardRes.data);
+            const res = await axios.get("/api/mtg/random");
+            setRecommendations(res.data);
+        } catch (error) {
+            console.error(error);
+        }
+        navigate(`/mtg/cards/${id}`);
     };
 
     return (
