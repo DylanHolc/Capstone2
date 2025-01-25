@@ -131,7 +131,7 @@ router.get('/delete/:id', async (req, res, next) => {
 
 router.post('/purchase', async (req, res, next) => {
     try {
-        const { username } = req
+        const username = req.cookies.username;
         const { items } = req.body;
         const user = await User.findByPk(username);
         if (user) {
