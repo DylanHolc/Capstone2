@@ -35,15 +35,15 @@ const Footer = () => {
                                     Products
                                 </h6>
                                 <p>
-                                    <Link to={'/pokemon/cards'} className='text-light'>Pokemon</Link>
+                                    <Link to={'/pokemon/cards'} className='text-dark'>Pokemon</Link>
 
                                 </p>
                                 <p>
-                                    <Link to={'/yugioh/cards'} className='text-light'>Yugioh</Link>
+                                    <Link to={'/yugioh/cards'} className='text-dark'>Yu-Gi-Oh</Link>
 
                                 </p>
                                 <p>
-                                    <Link to={'/mtg/cards'} className='text-light'>Magic</Link>
+                                    <Link to={'/mtg/cards'} className='text-dark'>Magic</Link>
                                 </p>
                             </div>
                             <div className="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">

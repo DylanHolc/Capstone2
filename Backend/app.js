@@ -12,8 +12,6 @@ const cartRoutes = require('./routes/cart');
 const { authenticateJWT } = require('./middleware/auth');
 const morgan = require('morgan');
 const cookieParser = require('cookie-parser');
-const { Sequelize } = require('sequelize');
-const sequelize = require('./sequelize');
 require('./models/associations');
 
 app.use(express.json());

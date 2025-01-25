@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
+import Alert from '@mui/material/Alert';
 
 const ChangePassword = () => {
     const { username } = useParams();
@@ -16,8 +17,11 @@ const ChangePassword = () => {
             navigate(`/${username}`);
         } catch (error) {
             console.log(error);
-            alert('Failed to change password');
-            navigate(`/${username}`);
+            return (
+                <>
+                    <Alert severity="error" onClose={() => { }}>Invalid Password</Alert>
+                </>
+            )
         }
     };
 

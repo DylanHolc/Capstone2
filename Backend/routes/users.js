@@ -14,7 +14,6 @@ const OrderedPokemonCard = require('../models/orderedPokemonCard');
 const OrderedMTGCard = require('../models/orderedMTGCard');
 const OrderedYugiohCard = require('../models/orderedYugiohCard');
 const PokemonCard = require('../models/pokemonCard');
-const { it } = require('@faker-js/faker');
 const MTGCard = require('../models/mtgCard');
 const YugiohCard = require('../models/yugiohCard');
 
@@ -31,10 +30,10 @@ router.post('/register', async (req, res, next) => {
         const results = await User.create({ username, password: hashedPassword, first_name, last_name, email })
         const token = jwt.sign({ username }, secret);
         return res.cookie('auth_token', token, {
-            httpOnly: true, // make the cookie inaccessible to client-side JavaScript
-            secure: true, // require HTTPS for cookie transmission
-            sameSite: 'strict', // prevent cross-site request forgery (CSRF)
-            maxAge: 7200000 // expire the cookie after 1 hour
+            httpOnly: true,
+            secure: true,
+            sameSite: 'none',
+            maxAge: 7200000
         }).status(201).json({ message: "User Created!" });
     } catch (error) {
         if (error.code === '23505') {
@@ -180,11 +179,11 @@ router.patch('/:username/password', ensureLoggedIn, async (req, res, next) => {
     }
 });
 
-router.delete('/:username', async (req, res, next) => {
+router.delete('/:username', ensureLoggedIn, async (req, res, next) => {
     try {
         const { username } = req.params;
         const results = await User.destroy({ where: { username: username } })
-        return res.json({ "msg": "User has been deleted" });
+        return res.status(204).json({ "msg": "User has been deleted" });
     } catch (error) {
         return next(error);
     }

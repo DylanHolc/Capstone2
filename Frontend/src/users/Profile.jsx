@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { v4 as uuid } from "uuid";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { Spinner } from "reactstrap";
 import { PersonBadgeFill } from "react-bootstrap-icons";
@@ -109,7 +110,7 @@ const Profile = () => {
                         </div>
                         <div className="mt-4">
                             {orders.map((order) => (
-                                < div className="row" >
+                                < div className="row" key={uuid()} >
                                     <div className="col-sm-12 mb-4">
                                         <div className="card">
                                             <div className="card-title text-center mt-1">

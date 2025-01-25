@@ -9,17 +9,26 @@ const ExpressError = require('../expressError');
 async function authenticateJWT(req, res, next) {
     try {
         const token = req.cookies.auth_token;
-        const payload = jwt.verify(token, secret);
-        req.session.username = payload.username;
-        console.log("Valid Token");
-        return next();
+        if (!token) {
+            console.log("No Token Found");
+            return next();
+        }
+        jwt.verify(token, secret, (error, payload) => {
+            if (error) {
+                console.log("Invalid Token");
+                return next();
+            }
+            req.username = payload.username;
+            console.log("Valid Token");
+            return next();
+        });
     } catch (error) {
         return next();
     }
 }
 
 async function ensureLoggedIn(req, res, next) {
-    if (!req.session.username) {
+    if (!req.username) {
         const error = new ExpressError("You are unauthorized to access this page!", 401);
         return next(error);
     } else {

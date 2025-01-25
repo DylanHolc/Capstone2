@@ -40,32 +40,30 @@ function App() {
 
   return (
     <div className='content'>
-      <BrowserRouter>
-        <MyNavbar isLoggedIn={isLoggedIn} />
-        <Routes>
-          <Route path="/" element={<Homepage />} />
-          <Route path="/login" element={<Login setIsLoggedIn={setIsLoggedIn} />} />
-          <Route path="/logout" element={<Logout setIsLoggedIn={setIsLoggedIn} />} />
-          <Route path="/register" element={<Register setIsLoggedIn={setIsLoggedIn} />} />
-          <Route path="/:username" element={<Profile />} />
-          <Route path="/:username/edit" element={<EditProfile />} />
-          <Route path="/:username/password" element={<ChangePassword />} />
-          <Route path="/:username/delete" element={<DeleteProfile setIsLoggedIn={setIsLoggedIn} />} />
-          <Route path="/cart" element={<Cart />} />
-          <Route path="/order-confirmation" element={<OrderConfirmation />} />
-          <Route path="/yugioh/cards" element={<YugiohCards />} />
-          <Route path="/yugioh/cards/:id" element={<YugiohCard />} />
-          <Route path="/yugioh/search/:term" element={<YugiohSearch />} />
-          <Route path="/pokemon/cards" element={<PokemonCards />} />
-          <Route path="/pokemon/cards/:id" element={<PokemonCard />} />
-          <Route path="/pokemon/search/:term" element={<PokemonSearch />} />
-          <Route path="/mtg/cards" element={<MagicCards />} />
-          <Route path="/mtg/cards/:id" element={<MagicCard />} />
-          <Route path="/mtg/search/:term" element={<MagicSearch />} />
-          <Route path="*" element={<Navigate to="/" />} />
-        </Routes>
-        <Footer />
-      </BrowserRouter>
+      <MyNavbar isLoggedIn={isLoggedIn} />
+      <Routes>
+        <Route path="/" element={<Homepage />} />
+        <Route path="/login" element={<Login setIsLoggedIn={setIsLoggedIn} />} />
+        <Route path="/logout" element={<Logout setIsLoggedIn={setIsLoggedIn} />} />
+        <Route path="/register" element={<Register setIsLoggedIn={setIsLoggedIn} />} />
+        <Route path="/:username" element={<Profile />} />
+        <Route path="/:username/edit" element={<EditProfile />} />
+        <Route path="/:username/password" element={<ChangePassword />} />
+        <Route path="/:username/delete" element={<DeleteProfile setIsLoggedIn={setIsLoggedIn} />} />
+        <Route path="/cart" element={<Cart />} />
+        <Route path="/order-confirmation" element={<OrderConfirmation />} />
+        <Route path="/yugioh/cards" element={<YugiohCards />} />
+        <Route path="/yugioh/cards/:id" element={<YugiohCard />} />
+        <Route path="/yugioh/search/:term" element={<YugiohSearch />} />
+        <Route path="/pokemon/cards" element={<PokemonCards />} />
+        <Route path="/pokemon/cards/:id" element={<PokemonCard />} />
+        <Route path="/pokemon/search/:term" element={<PokemonSearch />} />
+        <Route path="/mtg/cards" element={<MagicCards />} />
+        <Route path="/mtg/cards/:id" element={<MagicCard />} />
+        <Route path="/mtg/search/:term" element={<MagicSearch />} />
+        <Route path="*" element={<Navigate to="/" />} />
+      </Routes>
+      <Footer />
     </div>
   )
 }
