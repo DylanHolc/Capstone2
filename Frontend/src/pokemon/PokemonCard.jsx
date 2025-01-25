@@ -28,7 +28,7 @@ const PokemonCard = () => {
             }
         }
         requestCards();
-    }, []);
+    }, [window]);
 
     const handleChange = (e) => {
         setQuantity(e.target.value);

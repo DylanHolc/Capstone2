@@ -39,9 +39,8 @@ const Cart = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const items = cart;
-        const price = total;
         try {
-            await axios.post('/api/cart/purchase', { items, price })
+            await axios.post('/api/cart/purchase', items);
             navigate('/order-confirmation');
         } catch (error) {
             console.error(error);
