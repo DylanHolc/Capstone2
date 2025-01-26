@@ -37,9 +37,8 @@ const PokemonSearch = () => {
     const handleSearch = async (e) => {
         e.preventDefault();
         setIsLoaded(false);
-        navigate(`/pokemon/search/${searchTerm}`);
         try {
-            const res = await axios.get(`/api/pokemon/search/${term}`);
+            const res = await axios.get(`/api/pokemon/search/${searchTerm}`);
             setCards(res.data);
             setIsLoaded(true);
         } catch (error) {
@@ -47,6 +46,7 @@ const PokemonSearch = () => {
             navigate('/pokemon/cards');
 
         }
+        navigate(`/pokemon/search/${searchTerm}`);
     }
 
     const handleChange = (e) => {
