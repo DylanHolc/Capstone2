@@ -17,7 +17,6 @@ const PokemonSearch = () => {
     const [searchTerm, setSearchTerm] = useState("");
     const [currentPage, setCurrentPage] = useState(1);
     const [postsPerPage] = useState(24);
-    const [currentCards, setCurrentCards] = useState([]);
     const navigate = useNavigate();
 
 
@@ -26,7 +25,6 @@ const PokemonSearch = () => {
             try {
                 const res = await axios.get(`/api/pokemon/search/${term}`);
                 setCards(res.data);
-                setCurrentCards(cards.slice(idxOfFirstCard, idxOfLastCard));
                 setIsLoaded(!isLoaded);
 
             } catch (error) {
@@ -36,12 +34,12 @@ const PokemonSearch = () => {
         searchCards();
     }, []);
 
-    const handleSearch = async () => {
+    const handleSearch = async (e) => {
+        e.preventDefault();
         setIsLoaded(false);
         try {
             const res = await axios.get(`/api/pokemon/search/${term}`);
             setCards(res.data);
-            setCurrentCards(cards.slice(idxOfFirstCard, idxOfLastCard));
             setIsLoaded(true);
         } catch (error) {
             console.error(error);
@@ -57,6 +55,7 @@ const PokemonSearch = () => {
 
     const idxOfLastCard = currentPage * postsPerPage;
     const idxOfFirstCard = idxOfLastCard - postsPerPage;
+    const currentCards = cards.slice(idxOfFirstCard, idxOfLastCard);
 
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
