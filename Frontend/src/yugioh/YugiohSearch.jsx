@@ -36,14 +36,16 @@ const YugiohSearch = () => {
 
     const handleSearch = async (e) => {
         e.preventDefault();
+        setIsLoaded(false);
         try {
-            navigate(`/yugioh/search/${searchTerm}`);
-            window.location.reload();
+            const res = await axios.get(`/api/yugioh/search/${searchTerm}`);
+            setCards(res.data);
+            setIsLoaded(true);
         } catch (error) {
             console.error(error);
             navigate('/yugioh/cards');
-
         }
+        navigate(`/yugioh/search/${searchTerm}`);
     }
 
     const handleChange = (e) => {

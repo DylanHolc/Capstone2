@@ -44,7 +44,6 @@ const PokemonSearch = () => {
         } catch (error) {
             console.error(error);
             navigate('/pokemon/cards');
-
         }
         navigate(`/pokemon/search/${searchTerm}`);
     }

@@ -36,14 +36,16 @@ const MagicSearch = () => {
 
     const handleSearch = async (e) => {
         e.preventDefault();
+        setIsLoaded(false);
         try {
-            navigate(`/mtg/search/${searchTerm}`);
-            window.location.reload();
+            const res = await axios.get(`/api/mtg/search/${term}`);
+            setCards(res.data);
+            setIsLoaded(true);
         } catch (error) {
             console.error(error);
             navigate('/mtg/cards');
-
         }
+        navigate(`/mtg/search/${searchTerm}`);
     }
 
     const handleChange = (e) => {
