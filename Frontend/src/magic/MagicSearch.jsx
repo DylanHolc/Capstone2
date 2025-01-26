@@ -38,7 +38,7 @@ const MagicSearch = () => {
         e.preventDefault();
         setIsLoaded(false);
         try {
-            const res = await axios.get(`/api/mtg/search/${term}`);
+            const res = await axios.get(`/api/mtg/search/${searchTerm}`);
             setCards(res.data);
             setIsLoaded(true);
         } catch (error) {
