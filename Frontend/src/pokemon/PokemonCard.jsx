@@ -15,7 +15,7 @@ const PokemonCard = () => {
     const navigate = useNavigate();
 
     window.onpopstate = () => {
-        navigate(-1);
+        navigate('/pokemon/cards');
     };
 
     useEffect(() => {

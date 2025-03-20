@@ -15,7 +15,7 @@ const MagicCard = () => {
     const navigate = useNavigate(); ``
 
     window.onpopstate = () => {
-        navigate(-1);
+        navigate('/mtg/cards');
     };
 
     useEffect(() => {

@@ -16,7 +16,7 @@ const YugiohCard = () => {
     const navigate = useNavigate();
 
     window.onpopstate = () => {
-        navigate(-1);
+        navigate('/yugioh/cards');
     };
 
     useEffect(() => {
