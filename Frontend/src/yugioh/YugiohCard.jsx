@@ -15,6 +15,10 @@ const YugiohCard = () => {
     const [quantity, setQuantity] = useState(1);
     const navigate = useNavigate();
 
+    window.onpopstate = () => {
+        navigate(-1);
+    };
+
     useEffect(() => {
         async function requestCards() {
             try {

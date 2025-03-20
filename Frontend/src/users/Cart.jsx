@@ -3,6 +3,7 @@ import axios from 'axios';
 import { v4 as uuid } from 'uuid';
 import { X } from 'react-bootstrap-icons';
 import { useNavigate, Link } from 'react-router-dom';
+import Cookies from 'js-cookie';
 
 const Cart = () => {
 
@@ -26,6 +27,7 @@ const Cart = () => {
         cardExpiration: '',
         cardCVV: ''
     });
+    const [promo, setPromo] = useState('');
     const navigate = useNavigate();
 
     const handleChange = (e) => {
@@ -79,6 +81,14 @@ const Cart = () => {
         navigate('/cart');
     };
 
+    const handlePromo = () => {
+        if (promo === 'SAVE10') {
+            setSubtotal(subtotal * 0.9);
+        } else {
+            alert('Invalid promo code');
+        }
+    }
+
     useEffect(() => {
         async function fetchCart() {
             try {
@@ -103,6 +113,30 @@ const Cart = () => {
             }
         }
         fetchCart();
+    }, []);
+
+    useEffect(() => {
+        async function fetchUser() {
+            try {
+                const username = Cookies.get('username');
+                if (!username) {
+                    return;
+                }
+                if (username) {
+                    console.log(username);
+                    const res = await axios.get(`/api/users/${username}`);
+                    const user = res.data;
+                    setFormData({
+                        firstName: user.first_name,
+                        lastName: user.last_name,
+                        email: user.email,
+                    });
+                }
+            } catch (error) {
+                console.error(error);
+            }
+        }
+        fetchUser();
     }, []);
 
     return (
@@ -301,14 +335,14 @@ const Cart = () => {
                                 <form className="card p-2">
                                     <div className="input-group my-2">
                                         <input type="text" className="form-control" placeholder="Promo code" aria-label="Promo code" aria-describedby="button-addon2" />
-                                        <button className="btn btn-success" type="button" id="button-addon2">Redeem</button>
+                                        <button className="btn btn-success" type="button" id="button-addon2" onClick={handlePromo}>Redeem</button>
                                     </div>
                                 </form>
                             </div>
                         </div>
                     </div >
                 </main >
-                <style jsx>{`
+                <style>{`
                         .remove-icon:hover {
                             color: red;
                         }

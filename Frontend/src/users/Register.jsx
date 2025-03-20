@@ -61,6 +61,7 @@ const Register = ({ setIsLoggedIn }) => {
                         value={formData.password}
                         onChange={handleChange}
                         required
+                        minLength={8}
                     />
                 </div>
                 <div className="mb-3">
@@ -100,7 +101,7 @@ const Register = ({ setIsLoggedIn }) => {
                     />
                 </div>
                 <div className='d-flex justify-content-center pt-4 pb-5 mb-5'>
-                    <button type="submit" className="btn btn-info text-light col-6 fw-bold">Register</button>
+                    <button type="submit" className="btn btn-success text-light col-6 fw-bold">Register</button>
                 </div>
             </form>
         </div>
