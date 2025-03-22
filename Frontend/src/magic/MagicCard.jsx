@@ -102,7 +102,7 @@ const MagicCard = () => {
 
                                     <form className="d-flex justify-content-left" onSubmit={handleSubmit}>
                                         <div className="form-outline me-1" style={{ width: "100px" }}>
-                                            <input type="number" min={0} max={card.stock} value={quantity} onChange={handleChange} className="form-control" />
+                                            <input type="number" min={1} max={card.stock} value={quantity} onChange={handleChange} className="form-control" />
                                         </div>
                                         {card.stock > 0 ? (
                                             <button className="btn btn-primary ms-1" type="submit" >
