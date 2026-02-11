@@ -127,7 +127,7 @@ const Profile = () => {
                                                                     </div>
                                                                     <div className='col-4 my-auto mx-auto text-center'>
                                                                         <h5 className="my-2">{card.name}</h5>
-                                                                        <h6 className="text-muted">Quantity: {card.quantity}</h6>
+                                                          cl              <h6 className="text-muted">Quantity: {card.quantity}</h6>
                                                                     </div>
                                                                 </div>
                                                             </div>

@@ -1,12 +1,12 @@
 {
-    "rewrites": [
-        {
-            "source": "/api/:path*",
-            "destination": "https://capstone2backend.xyz/:path*"
-        },
-        {
-            "source": "/api/:path*/",
-            "destination": "https://capstone2backend.xyz/:path*/"
-        }
-    ]
+  "rewrites": [
+    {
+      "source": "/api/:path*",
+      "destination": "https://capstone2-5v43.onrender.com/:path*"
+    },
+    {
+      "source": "/api/:path*/",
+      "destination": "https://capstone2-5v43.onrender.com/:path*/"
+    }
+  ]
 }
